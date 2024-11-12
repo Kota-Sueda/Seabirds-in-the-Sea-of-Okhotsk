@@ -1,0 +1,138 @@
+header {
+    display: flex;
+    align-items: flex-start; /* 上部に揃える */
+    padding: 10px;
+}
+
+.header-logo {
+    width: 70px; /* 画像のサイズを調整 */
+    height: auto;
+    margin-right: 60px; /* 画像とテキストの間に余白を追加 */
+}
+
+.header-text {
+    text-align: left; /* テキストを左揃えに */
+}
+
+.header-text h1,
+.header-text h2 {
+    margin: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+
+h1 {
+    color: #333;
+}
+
+
+/* horizontal-container全体のスタイル */
+.horizontal-container {
+    display: flex;
+    gap: 20px; /* コンテンツ間のスペース */
+    margin-bottom: 30px; /* forecastと間隔を作る */
+}
+
+/* グリッドコンテナのスタイル */
+.grid-container1 {
+    display: flex;
+    justify-content: flex-start; /* グリッド全体を左揃え */
+    margin-top: 10px;
+    margin-right: 80px;
+    margin-bottom: 20px; /* 各グリッドの下にスペースを追加 */
+}
+
+/* グリッドアイテムのスタイル */
+.grid-item1 {
+    display: flex;
+    flex-direction: column; /* テキストと画像を縦に配置 */
+    align-items: center; 
+}
+
+/* 日付のスタイル */
+.date {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+}
+
+/* 画像のスタイル */
+.grid-item1 img {
+    width: 700px; /* 画像の幅を300pxに設定（必要に応じて変更） */
+    height: auto; /* アスペクト比を保持 */
+}
+
+.trajectory-analysis {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    align-items: flex-start; /* 上揃え */
+    margin-top: 45px;
+}
+
+.trajectory-analysis img {
+    width: 400px; /* 画像の幅を300pxに設定（必要に応じて変更） */
+    height: auto; /* アスペクト比を保持 */
+}
+
+
+/* forecast全体のスタイル */
+#forecast {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 横に4つの列を作成 */
+    gap: 30px;  /* 各アイテム間の隙間 */
+    margin: 5px;
+}
+
+/* 各 grid-item のスタイル */
+.grid-item {
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+}
+
+/* 画像のスタイル */
+.grid-item img {
+    width: 100%;  /* 画像をコンテナ内で100%の幅に調整 */
+    height: auto;  /* アスペクト比を維持 */
+    max-width: 300px;  /* 画像の最大幅を制限 */
+}
+
+/* 日付のスタイル */
+.date {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.caption {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 600px) {
+    .grid-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}

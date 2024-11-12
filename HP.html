@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seabirds distribution around the Sea of Okhotsk</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // 日付を取得し、指定した日数を加える関数
+        function getFutureDate(days) {
+            const today = new Date();
+            today.setDate(today.getDate() + days);  // 日付に指定した日数を加える
+            const year = today.getFullYear();
+            const month = ('0' + (today.getMonth() + 1)).slice(-2);  // 月は0始まり
+            const day = ('0' + today.getDate()).slice(-2);
+            const dayOfWeekNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const dayOfWeek = dayOfWeekNames[today.getDay()];  // 曜日名を取得
+
+            // 日付 + 曜日を "YYYY/MM/DD (曜日)" 形式で返す
+            return `${year}/${month}/${day} (${dayOfWeek})`;  
+        }
+
+        function displayData() {
+            for (let i = 0; i < 5; i++) {
+                const dateElement = document.getElementById(`date${i}`);
+
+                if (dateElement) {
+                dateElement.textContent = getFutureDate(i);  // +i日後の日付と曜日を表示
+                }
+            }
+        }
+
+        // ページ読み込み後にデータを表示
+        window.onload = displayData;
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-text">
+            <h1>Ocean Physics Forecast in the Sea of Okhotsk</h1>
+            <h2>for the prediction of observation possibility of seabirds at Cape Soya</h2>
+        </div>
+        <img src="images/IMG_7914.jpg" alt="Logo" class="header-logo">
+    </header>
+   
+    <main>
+        <section>
+            <p>The movements of seabirds are mainly affected by season, weather conditions and distribution of food resources. </p>
+            <p>Closely related elements; sea water temperature, ocean currents and wind direction & speed are discribed in the maps below. </p>
+        </section>
+
+        <section>
+            <h2>Latest Forecast Data:</h2>
+            <p>Daily mean values of sea surface temperature and ocean currents (WD = 9.57),<br>
+                wind direction and speed (ALT = 10m) at 09:00 JST.</p>
+
+            <section class="horizontal-container">
+                <!-- 左側のコンテンツ -->
+                <div class="grid-container1">
+                    <div class="grid-item1 flex-container">
+                        <div id="date0" class="date"></div>
+                        <img src="images/Weather_Map_0.png" alt="weather map 1">
+                    </div>
+                </div>
+            
+                <!-- 右側のコンテンツ -->
+                <div class="trajectory-analysis">
+                    <div>backward trajectory analysis for 3 days</div>
+                    <img src="images\trajectory_analysis.png" alt="backward trajectory analysis">
+                </div>
+            </section>    
+    
+
+            <!-- 4日分のデータを表示 -->
+            <section id="forecast">
+
+                <div class="grid-container">
+                    <div class="grid-item flex-container">
+                        <div id="date1" class="date"></div>
+                        <img src="images\Weather_Map_1.png" alt="weather map 2">
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div class="grid-item flex-container">
+                        <div id="date2" class="date"></div>
+                        <img src="images\Weather_Map_2.png" alt="weather map 3">
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div class="grid-item flex-container">
+                        <div id="date3" class="date"></div>
+                        <img src="images\Weather_Map_3.png" alt="weather map 4">
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div class="grid-item flex-container">
+                        <div id="date4" class="date"></div>
+                        <img src="images\Weather_Map_4.png" alt="weather map 5">
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <p>海鳥リスト</p>
+        <ul>
+            <li>Item 3</li>
+            <li>Item 3</li>
+            <li>Item 3</li>
+
+        </ul>
+        
+        <p>餌リスト</p>
+        <ul>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>        
+
+    
+        
+    </main>
+</body>
+</html>
