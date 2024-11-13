@@ -10,7 +10,7 @@ from matplotlib.colors import TwoSlopeNorm
 # 日本標準時で現在の日付と時刻を取得し、1日前の日付を設定
 jst = pytz.timezone('Asia/Tokyo')
 today = datetime.now(jst)
-target_date = today - timedelta(days=1)
+target_date = today - timedelta(days=2)
 
 # データのベースパスと保存先フォルダを指定
 temperature_base_path = r"C:\Users\suedakouta\Desktop\Horned Puffin\forecast_download\CMEMS_thetao_{}.nc"
@@ -50,9 +50,9 @@ for i in range(5):
 
     # 風データの読み込み
     with pygrib.open(wind_file_path) as grb:
-        u_wind_msg = grb.select(name='U component of wind', level=10)[0]
+        u_wind_msg = grb.select(name='U component of wind', level=1000)[0]
         u_data = u_wind_msg.values
-        v_wind_msg = grb.select(name='V component of wind', level=10)[0]
+        v_wind_msg = grb.select(name='V component of wind', level=1000)[0]
         v_data = v_wind_msg.values
         lats, lons = u_wind_msg.latlons()
 
@@ -60,10 +60,10 @@ for i in range(5):
     lat_mask = (lats >= lat_min) & (lats <= lat_max)
     lon_mask = (lons >= lon_min) & (lons <= lon_max)
     mask = lat_mask & lon_mask
-    lats_filtered = lats[mask][::6]
-    lons_filtered = lons[mask][::6]
-    u_data_filtered = u_data[mask][::6]
-    v_data_filtered = v_data[mask][::6]
+    lats_filtered = lats[mask][::16]
+    lons_filtered = lons[mask][::16]
+    u_data_filtered = u_data[mask][::16]
+    v_data_filtered = v_data[mask][::16]
 
     # プロットの作成
     plt.figure(figsize=(10, 10))

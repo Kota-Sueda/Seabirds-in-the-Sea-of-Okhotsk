@@ -14,12 +14,12 @@ lon_min, lon_max = 133, 158
 # GRIBファイルを開く
 with pygrib.open(file_path) as grb:
     # U風成分を取得
-    u_wind_msg = grb.select(name='U component of wind', level=10)[0]  # 10 m高度のデータ
+    u_wind_msg = grb.select(name='U component of wind', level=1000)[0]  # 10 m高度のデータ
     u_data = u_wind_msg.values
     lats, lons = u_wind_msg.latlons()
 
     # V風成分を取得
-    v_wind_msg = grb.select(name='V component of wind', level=10)[0]
+    v_wind_msg = grb.select(name='V component of wind', level=1000)[0]
     v_data = v_wind_msg.values
 
 # 指定した緯度・経度範囲でデータをフィルタリング
@@ -34,10 +34,10 @@ u_data_filtered = u_data[mask]
 v_data_filtered = v_data[mask]
 
 # データを一つおきに間引き
-lats_filtered = lats_filtered[::6]
-lons_filtered = lons_filtered[::6]
-u_data_filtered = u_data_filtered[::6]
-v_data_filtered = v_data_filtered[::6]
+lats_filtered = lats_filtered[::16]
+lons_filtered = lons_filtered[::16]
+u_data_filtered = u_data_filtered[::16]
+v_data_filtered = v_data_filtered[::16]
 
 # プロット
 plt.figure(figsize=(10, 8))
