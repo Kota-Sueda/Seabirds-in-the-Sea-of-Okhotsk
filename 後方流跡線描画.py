@@ -6,10 +6,13 @@ import cartopy.feature as cfeature
 plt.rcParams['font.family'] = 'Meiryo'
 
 # CSVファイルのパスを指定
-file_path = r"C:\Users\suedakouta\Downloads\20241106232120.csv"
+file_path = r"C:\Users\suedakouta\Downloads\20241112221102.csv"
+
+# 保存先の画像パスを指定
+save_path = r"C:\Users\suedakouta\Desktop\python\Puffin\images\trajectory_analysis.png"
 
 # 各解析の行範囲を指定
-row_ranges = [(30, 102), (133, 205), (236, 308)]
+row_ranges = [(30, 102)]#, (133, 205), (236, 308)]
 print(row_ranges)
 
 # 地図の作成
@@ -37,9 +40,15 @@ for start, end in row_ranges:
         if row < len(df):  # データの範囲内か確認
             ax.plot(longitudes.iloc[row], latitudes.iloc[row], marker='o', color='red', markersize=5, transform=ccrs.PlateCarree())
 
+# ファイルの30行目の最初の3列をタイトルに使用
+df_title = pd.read_csv(file_path, sep=',', comment='#', header=None, skiprows=29, nrows=1)
+title_str = f"Backward Trajectory Analysis {df_title.iloc[0, 0]}/{df_title.iloc[0, 1]}/{df_title.iloc[0, 2]} {df_title.iloc[0, 3]}:00 (UTC)"
 
 # タイトルを追加
-plt.title("3日間の後方流跡線解析")
+plt.title(title_str, fontsize=16)
+
+# 画像を指定パスに保存
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
 
 # 地図の表示
 plt.show()
