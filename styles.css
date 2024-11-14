@@ -31,7 +31,6 @@ h1 {
     color: #333;
 }
 
-
 /* horizontal-container全体のスタイル */
 .horizontal-container {
     display: flex;
@@ -55,13 +54,6 @@ h1 {
     align-items: center; 
 }
 
-/* 日付のスタイル */
-.date {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-
-}
 
 /* 画像のスタイル */
 .grid-item1 img {
@@ -105,12 +97,6 @@ h1 {
     max-width: 300px;  /* 画像の最大幅を制限 */
 }
 
-/* 日付のスタイル */
-.date {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
 
 .grid-container {
     display: flex;

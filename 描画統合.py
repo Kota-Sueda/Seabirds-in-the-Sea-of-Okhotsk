@@ -1,4 +1,5 @@
 import pygrib
+import numpy as np
 import xarray as xr
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
@@ -6,11 +7,12 @@ import cartopy.feature as cfeature
 import pytz
 from datetime import datetime, timedelta
 from matplotlib.colors import TwoSlopeNorm
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 # 日本標準時で現在の日付と時刻を取得し、1日前の日付を設定
 jst = pytz.timezone('Asia/Tokyo')
 today = datetime.now(jst)
-target_date = today - timedelta(days=2)
+target_date = today - timedelta(days=3)
 
 # データのベースパスと保存先フォルダを指定
 temperature_base_path = r"C:\Users\suedakouta\Desktop\Horned Puffin\forecast_download\CMEMS_thetao_{}.nc"
@@ -30,6 +32,9 @@ for i in range(5):
     current_file_path = current_base_path.format(i)
     wind_file_path = wind_base_path.format(i)
     output_file = f"{output_folder}\Weather_Map_{i}.png"
+
+    plot_date = target_date + timedelta(days=i)
+    plot_date_str = plot_date.strftime('%Y/%m/%d (%a)')
 
     # 海水温データの読み込み
     temperature_ds = xr.open_dataset(temperature_file_path)
@@ -90,8 +95,30 @@ for i in range(5):
     ax.barbs(lons_filtered, lats_filtered, u_data_filtered, v_data_filtered, length=6, 
              transform=ccrs.PlateCarree(), barb_increments=dict(half=2, full=4, flag=20))
 
+    # 凡例の表示位置を指定（例: 左上の緯度・経度）
+    legend_x = 134.5
+    legend_y = 59.6
+
+    # 凡例の矢羽根の風速例（2, 4, 20 m/s）
+    legend_u = np.array([2, 4, 20])
+    legend_v = np.array([0, 0, 0])  # 水平方向の矢羽根にするためv成分は0
+
+    # 凡例の位置を格納したnumpy配列を作成
+    legend_x_positions = np.array([legend_x + i * 1.5 for i in range(len(legend_u))])
+    legend_y_positions = np.full_like(legend_x_positions, legend_y)
+
+    # 凡例の矢羽根とラベルを直接プロットに配置
+    ax.barbs(legend_x_positions, legend_y_positions, legend_u, legend_v, 
+             length=6, transform=ccrs.PlateCarree(),
+             barb_increments=dict(half=2, full=4, flag=20), color='black')
+
+    for i, speed in enumerate(legend_u):
+        ax.text(legend_x_positions[i] - 0.5, legend_y_positions[i] - 0.3, f'{speed} m/s', 
+                transform=ccrs.PlateCarree(), ha='center', fontsize=7, color='black')
+
     # タイトルとラベル
-    plt.title(f"Wind (10m) and Sea Water Temperature and Ocean Currents (9.57m)  day{i}")
+    plt.title(f"Wind (1000hPa) and Sea Water Temperature and Ocean Currents (9.57m)  day{i}")
+    plt.suptitle(f"{plot_date_str}", fontsize=20, y=0.95, fontweight='bold')
     plt.xlabel("Longitude")
     plt.ylabel("Latitude")
 

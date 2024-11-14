@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import cartopy.crs as ccrs
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 # GRIBファイルのパス
 file_path = r"C:\Users\suedakouta\Downloads\Z__C_RJTD_20241105120000_GSM_GPV_Rgl_FD0112_grib2.bin"
@@ -40,7 +41,7 @@ u_data_filtered = u_data_filtered[::16]
 v_data_filtered = v_data_filtered[::16]
 
 # プロット
-plt.figure(figsize=(10, 8))
+plt.figure(figsize=(8, 8))
 ax = plt.axes(projection=ccrs.PlateCarree())
 ax.set_extent([lon_min, lon_max, lat_min, lat_max], crs=ccrs.PlateCarree())
 
@@ -59,6 +60,25 @@ ax.gridlines(draw_labels=True)
 
 # タイトルを設定
 plt.title('10 m Wind Components (U and V) over Specified Region')
+
+# 凡例用の四角形のAxesを地図の左上隅に追加
+legend_ax = inset_axes(ax, width="19%", height="12%", loc="upper left", borderpad=0)
+
+# 凡例に表示する風速の例（2, 4, 20 m/s）
+legend_u = [2, 4, 20]
+legend_v = [0, 0, 0]  # 水平に表示するためのv成分
+
+# 凡例の矢羽根をプロット
+legend_ax.barbs([0.35, 1.35, 2.35], [0, 0, 0], legend_u, legend_v, 
+                length=6, 
+                barb_increments=dict(half=2, full=4, flag=20), color='black')
+legend_ax.set_xlim(-0.5, 2.5)
+legend_ax.set_ylim(-1, 1)
+
+# 矢羽根の下にラベルを追加
+for i, speed in enumerate(legend_u):
+    legend_ax.text(i, -0.5, f'{speed} m/s', ha='center', fontsize=7, color='black')
+
 
 # 表示
 plt.show()
