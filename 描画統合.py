@@ -118,7 +118,7 @@ for i in range(5):
 
     # タイトルとラベル
     plt.title(f"Wind (1000hPa) and Sea Water Temperature and Ocean Currents (9.57m)  day{i}")
-    plt.suptitle(f"{plot_date_str}", fontsize=20, y=0.95, fontweight='bold')
+    plt.suptitle(f"{plot_date_str}", fontsize=30, y=0.95, fontweight='bold')
     plt.xlabel("Longitude")
     plt.ylabel("Latitude")
 
