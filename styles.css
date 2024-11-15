@@ -70,6 +70,12 @@ h1 {
     margin-top: 45px;
 }
 
+.trajectory-analysis div {
+    font-size: 1.5vw; /* ビューポート幅の2%にフォントサイズを設定 */
+    text-align: center; /* 中央揃え */
+    margin-bottom: 5px; /* 画像との間に余白を追加 */
+}
+
 .trajectory-analysis img {
     width: 400px; /* 画像の幅を300pxに設定（必要に応じて変更） */
     height: auto; /* アスペクト比を保持 */
@@ -80,7 +86,7 @@ h1 {
 #forecast {
     display: grid;
     grid-template-columns: repeat(4, 1fr);  /* 横に4つの列を作成 */
-    gap: 30px;  /* 各アイテム間の隙間 */
+    gap: 3%;  /* 各アイテム間の隙間 */
     margin: 5px;
 }
 
