@@ -129,3 +129,26 @@ h1 {
         height: auto;
     }
 }
+
+/* 画像セクションのスタイル */
+.image-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* 均等に配置 */
+    gap: 2%; /* 各画像間のスペース */
+    max-width: 1200px; /* セクション全体の最大幅 */
+    margin: 0 auto; /* 中央揃え */
+}
+/* 画像コンテナのスタイル */
+.image-container {
+    flex: 1 1 calc(33.333% - 40px); /* 3列表示 */
+    max-width: calc(33.333% - 40px);
+    text-align: center;
+}
+
+/* 画像自体のスタイル */
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 1%;
+}
