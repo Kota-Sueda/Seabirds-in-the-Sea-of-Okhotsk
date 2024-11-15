@@ -86,8 +86,8 @@ h1 {
 #forecast {
     display: grid;
     grid-template-columns: repeat(4, 1fr);  /* 横に4つの列を作成 */
-    gap: 3%;  /* 各アイテム間の隙間 */
-    margin: 5px;
+    gap: 2%;  /* 各アイテム間の隙間 */
+    margin: 3px;
 }
 
 /* 各 grid-item のスタイル */
