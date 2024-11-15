@@ -33,8 +33,9 @@ h1 {
 
 /* horizontal-container全体のスタイル */
 .horizontal-container {
+    width: 100%;
     display: flex;
-    gap: 20px; /* コンテンツ間のスペース */
+    gap: 5%; /* コンテンツ間のスペース */
     margin-bottom: 30px; /* forecastと間隔を作る */
 }
 
@@ -43,7 +44,7 @@ h1 {
     display: flex;
     justify-content: flex-start; /* グリッド全体を左揃え */
     margin-top: 10px;
-    margin-right: 80px;
+    margin-right: 5%;
     margin-bottom: 20px; /* 各グリッドの下にスペースを追加 */
 }
 
